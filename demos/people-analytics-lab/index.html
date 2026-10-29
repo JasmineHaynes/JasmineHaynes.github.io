@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Jasmine Haynes portfolio: AI, machine learning, I-O Psychology, and people analytics."><title>People Analytics Lab | Jasmine Haynes</title><link rel="stylesheet" href="/assets/styles.css"></head><body><header><div class="wrap nav">
+<a class="brand" href="/"><span class="brandmark">JH</span><span>JASMINE HAYNES <span style="color:var(--cyan)">/ PORTFOLIO</span></span></a>
+<button class="menu-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu ☰</button>
+<nav aria-label="Main navigation"><a href="/#work">Work</a><a href="/#approach">Approach</a><a href="/#skills">Skills</a><a href="/#about">About</a><a href="/#contact">Contact</a></nav>
+</div></header><main>
+<div class="wrap page-hero"><div class="breadcrumbs"><a href="/">Home</a> / Demos / People Analytics Lab</div><div class="eyebrow">Interactive demo · Synthetic data</div><h1>People Analytics Lab</h1><p class="lede">Explore how hypothetical workforce indicators change in a small synthetic dataset. This is a visualization demo—not a trained model and not a tool for predicting real employee behavior.</p></div>
+<section style="padding-top:8px"><div class="wrap"><div class="demo-shell">
+<p class="notice">Important: all numbers below are generated for demonstration. They are not empirical results and should not inform employment decisions.</p>
+<div class="demo-controls">
+<div class="control"><label for="engagement">Engagement level <output id="engagementOut">3.2 / 5</output></label><input id="engagement" type="range" min="1" max="5" value="3.2" step=".1"></div>
+<div class="control"><label for="support">Manager support <output id="supportOut">3.4 / 5</output></label><input id="support" type="range" min="1" max="5" value="3.4" step=".1"></div>
+<div class="control"><label for="workload">Workload level <output id="workloadOut">3.0 / 5</output></label><input id="workload" type="range" min="1" max="5" value="3" step=".1"></div>
+<div class="control"><label for="tenure">Tenure <output id="tenureOut">36 months</output></label><input id="tenure" type="range" min="1" max="120" value="36" step="1"></div>
+</div>
+<div class="metrics"><div class="metric"><span>Engagement input</span><strong id="engMetric">3.2/5</strong></div><div class="metric"><span>Support input</span><strong id="supportMetric">3.4/5</strong></div><div class="metric"><span>Tenure input</span><strong id="tenureMetric">36 mo</strong></div></div>
+<div class="chartbox"><h3 style="margin-top:0">Illustrative indicator profile</h3><p style="color:var(--muted);font-size:.9rem">Bars simply display your selected inputs on a common 0–100 scale. They are not risk scores or recommendations.</p>
+<div class="barrow"><span>Engagement</span><div class="bartrack"><div id="engBar" class="barfill" style="width:55%"></div></div><b id="engVal">55</b></div>
+<div class="barrow"><span>Manager support</span><div class="bartrack"><div id="supportBar" class="barfill" style="width:60%"></div></div><b id="supportVal">60</b></div>
+<div class="barrow"><span>Workload</span><div class="bartrack"><div id="workloadBar" class="barfill" style="width:50%"></div></div><b id="workloadVal">50</b></div>
+<div class="barrow"><span>Tenure</span><div class="bartrack"><div id="tenureBar" class="barfill" style="width:30%"></div></div><b id="tenureVal">30</b></div>
+</div>
+</div>
+<div class="split" style="margin-top:18px"><div class="panel"><h3>What this demo shows</h3><p>Interactive inputs can change a visualization instantly. A real people analytics project needs valid data, a defined research question, documented methods, and evaluation—not just an interface.</p></div><div class="panel"><h3>What this demo does not show</h3><p>It does not estimate attrition, explain why someone leaves, measure an employee’s performance, or produce validated scientific conclusions. No employee data is collected or sent anywhere.</p></div></div>
+</div></section>
+<script>
+(function(){
+ const ids=["engagement","support","workload","tenure"];
+ function update(){
+  const e=Number(document.getElementById("engagement").value), s=Number(document.getElementById("support").value), w=Number(document.getElementById("workload").value), t=Number(document.getElementById("tenure").value);
+  document.getElementById("engagementOut").textContent=e.toFixed(1)+" / 5";
+  document.getElementById("supportOut").textContent=s.toFixed(1)+" / 5";
+  document.getElementById("workloadOut").textContent=w.toFixed(1)+" / 5";
+  document.getElementById("tenureOut").textContent=t+" months";
+  document.getElementById("engMetric").textContent=e.toFixed(1)+"/5";
+  document.getElementById("supportMetric").textContent=s.toFixed(1)+"/5";
+  document.getElementById("tenureMetric").textContent=t+" mo";
+  const vals=[Math.round(e/5*100),Math.round(s/5*100),Math.round(w/5*100),Math.round(t/120*100)];
+  const keys=["eng","support","workload","tenure"];
+  keys.forEach((k,i)=>{document.getElementById(k+"Bar").style.width=vals[i]+"%";document.getElementById(k+"Val").textContent=vals[i];});
+ }
+ ids.forEach(id=>document.getElementById(id).addEventListener("input",update)); update();
+})();
+</script>
+</main><footer class="footer"><div class="wrap footer-inner"><span>© <span data-year></span> Jasmine Haynes · AI × Human Behavior</span><span>Built around evidence, people, and responsible AI.</span></div></footer><script src="/assets/main.js"></script></body></html>
